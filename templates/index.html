@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Christy's Vintage Store</title>
+</head>
+<link rel="stylesheet" href="../static/style.css">
+<h1 class="title"> Welcome to Christy's Vintage Store!</h1>
+<body>
+    <div id="cred-container">
+        <div id="credentials">
+            <h2>New User? Register Here:</h2>
+            <form id="credential-form" method="POST" action="/">
+                <label for="email"> Enter your Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+        
+                <label for="password"> Enter Your Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+        
+                <label for="password2"> Re-Enter Your Password:</label><br>
+                <input type="password" id="password2" name="password2" required><br>
+                <button id="credbutton" name= 'action' value= 'Register' type="submit">Register</button>
+            </form>
+        </div>
+        <div id="credentials">
+            <h2>Returning User? Login Here:</h2>
+            <form id="credential-form" method="POST" action="/">
+                <label for="log_email"> Enter your Email:</label><br>
+                <input type="email" id="log_email" name="log_email" required><br>
+        
+                <label for="log_password"> Enter Your Password:</label><br>
+                <input type="password" id="log_password" name="log_password" required><br>
+                <button id="credbutton" name= 'action' value= 'Login' type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+            <div id="success-modal" class="modal">
+                <div class="modal-content">
+                    <!-- Added id="modal-text" so JavaScript can find it -->
+                    <h2 id="modal-text"></h2>
+                    <button onclick="closeModal()">Close</button>
+                </div>
+            </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+
+    <!-- Automatically trigger the modal if Flask passed a message -->
+    {% if message %}
+    <script>
+        window.onload = function() {
+            toggleModal("{{ message }}");
+        };
+    </script>
+    {% endif %}
+</body>
+</html>

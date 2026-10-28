@@ -1,0 +1,98 @@
+html {
+ background-color: transparent;
+}
+
+body {
+    /* Add a background color or image */
+    background-color: blanchedalmond;; 
+
+    /* Customize the default size, color, and font for text*/
+    font-size: 16px;
+    color: var(--text-color);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* This tells the browser: "Try to use `Tahoma`, and if you can't find it, use any sans-serif font." */
+
+    /* Put space around the edges of the webpage */
+    margin: 50px;
+}
+
+.modal {
+  display: none;   
+  position: fixed; 
+  z-index: 2;      
+  
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  
+  background-color: rgba(0,0,0,0.4); 
+
+
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+#cred-container {
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    flex-direction: row;
+}
+
+#credentials{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    padding: 50px;
+    margin: 50px;
+    background-color: rgb(159, 186, 159);
+    border-radius: 30px;
+}
+
+#credential-form{
+    align-items: flex-start;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.title{
+    text-align: center;
+    background-color:pink ;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+button{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: lightpink;
+    cursor: pointer;
+}
+
+#credbutton{
+    padding: 10px 15px;          /* space between button's text and edge */
+    border-radius: 5px;         /* curved edges instead of square */
+    cursor: pointer;            /* makes the cursor change when over button */
+    border-width: 2px;
+    border-color: rgb(158, 98, 52);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 15px;
+}
