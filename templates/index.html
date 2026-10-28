@@ -7,6 +7,14 @@
 <link rel="stylesheet" href="../static/style.css">
 <h1 class="title"> Welcome to Christy's Vintage Store!</h1>
 <body>
+    <div class="navbar">
+        <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="Browse Bags">Browse Bags</a></li>
+        <li><a href="Help">Help</a></li>
+        <li><a href="#Login">Login</a></li>
+        </ul>
+    </div>
     <div id="cred-container">
         <div id="credentials">
             <h2>New User? Register Here:</h2>
@@ -26,7 +34,7 @@
             <h2>Returning User? Login Here:</h2>
             <form id="credential-form" method="POST" action="/">
                 <label for="log_email"> Enter your Email:</label><br>
-                <input type="email" id="log_email" name="log_email" required><br>
+                <input id="Login" type="email" id="log_email" name="log_email" required><br>
         
                 <label for="log_password"> Enter Your Password:</label><br>
                 <input type="password" id="log_password" name="log_password" required><br>
