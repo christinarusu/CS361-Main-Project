@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Christy's Vintage Store</title>
+</head>
+<link rel="stylesheet" href="../static/style.css">
+<h1 class="title"> Welcome to Christy's Vintage Store!</h1>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home')}}">Home</a></li>
+            <li><a href="">Help</a></li>
+    <!-- If the user is logged in --> 
+                {% if session.get('login_tracker') == '1' %} 
+                    <li><a href="{{ url_for('account')}}">My Account</a> </li>
+                    <li><a href="/logout">Log Out</a></li>
+                <!-- If the user is logged out --> 
+                {% else %} 
+                <li> <a href="{{ url_for('index') }}">Register/Login</a> </li>
+                {% endif %}
+        </ul>
+    </div>
+    <div class="help_text">
+        <h3>Need Help? Here Are Some Tips:</h3>
+        <h4><u>To purchase a bag:</u></h4>
+            <ol>
+            <li>Go to home page and browse, search, or filter for the bag you are looking for</li>
+            <li>Click on the bag image to see more details about the bag. If you want to 
+                purchase it, click the green buy button
+            </li>
+            <li>You will now be on the <i>Buy Bags</i> page. Input your information and 
+            click "Purchase"</li>
+            <li>Confirm that you want to purchase the bag in the window that pops up</li>
+            </ol>
+        <h4><u>To View Orders:</u></h4>
+            <ol>
+                <li>You can now view your purchased bag by going to the <i>"My Account"</i>
+                Page and clicking the <i>"View Order History"</i> button from there</li>
+            </ol>
+    </div>
+</body>

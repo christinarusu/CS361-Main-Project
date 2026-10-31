@@ -9,11 +9,26 @@
 <body>
      <div class="navbar">
         <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="Browse Bags">Browse Bags</a></li>
-        <li><a href="Help">Help</a></li>
-        <li><a href="#Logout">Logout</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+  <!-- If the user is logged in --> 
+            {% if session.get('login_tracker') == '1' %} 
+                <li><a href="{{ url_for('home') }}">My Account</a> </li>
+                <li><a href="/logout">Log Out</a></li>
+            <!-- If the user is logged out --> 
+            {% else %} 
+               <li> <a href="{{ url_for('index') }}">Register/Login</a> </li>
+            {% endif %}
         </ul>
     </div>
+    <div id="purse-block">
+                <div class="purse-item">
+                    <img src="../static/img/1.jpg" alt="..." width="200" height="200">
+                </div>
+    </div>    
+     <form id="Search-form" method="POST" action="/">
+                <label for="search"> Search</label><br>
+                <input type="search" id="search" name="search"><br>
+    </form>      
     <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>

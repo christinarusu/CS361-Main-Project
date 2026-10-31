@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Christy's Vintage Store</title>
+</head>
+<link rel="stylesheet" href="../static/style.css">
+<h1 class="title"> Welcome to Christy's Vintage Store!</h1>
+<body>
+     <div class="navbar">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+  <!-- If the user is logged in --> 
+            {% if session.get('login_tracker') == '1' %} 
+                <li><a href="">My Account</a> </li>
+                <li><a href="/logout">Log Out</a></li>
+            <!-- If the user is logged out --> 
+            {% else %} 
+               <li> <a href="{{ url_for('index') }}">Register/Login</a> </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div>
+        <h2>Account Details</h2>
+         <ul>
+            <li><strong>Name:</strong> {{ user.name }}</li>
+            <li><strong>Email:</strong> {{ user.email }}</li>
+            <li><strong>Address:</strong> {{ user.address }}</li>
+        </ul>
+    </div>
+</body>

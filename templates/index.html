@@ -9,17 +9,29 @@
 <body>
     <div class="navbar">
         <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="Browse Bags">Browse Bags</a></li>
-        <li><a href="Help">Help</a></li>
-        <li><a href="#Login">Login</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('help') }}">Help</a></li>
+         <!-- If the user is logged in --> 
+            {% if session.get('login_tracker') == '1' %} 
+                <li><a href="{{ url_for('account') }}">My Account</a> </li>
+                <li><a href="/logout">Log Out</a></li>
+            <!-- If the user is logged out --> 
+            {% else %} 
+               <li> <a href="{{ url_for('index') }}">Register/Login</a> </li>
+            {% endif %}
         </ul>
     </div>
     <div id="cred-container">
         <div id="credentials">
             <h2>New User? Register Here:</h2>
             <form id="credential-form" method="POST" action="/">
-                <label for="email"> Enter your Email:</label><br>
+                <label for="name">Name:</label><br>
+                <input id="name" type="text" id="name" name="name" required><br>
+
+                <label for="address">Address:</label><br>
+                <input id="address" type="address" id="address" name="address" required><br>
+
+                <label for="email"> Email:</label><br>
                 <input type="email" id="email" name="email" required><br>
         
                 <label for="password"> Enter Your Password:</label><br>
@@ -33,6 +45,7 @@
         <div id="credentials">
             <h2>Returning User? Login Here:</h2>
             <form id="credential-form" method="POST" action="/">
+
                 <label for="log_email"> Enter your Email:</label><br>
                 <input id="Login" type="email" id="log_email" name="log_email" required><br>
         
@@ -42,13 +55,17 @@
             </form>
         </div>
     </div>
-            <div id="success-modal" class="modal">
-                <div class="modal-content">
-                    <!-- Added id="modal-text" so JavaScript can find it -->
-                    <h2 id="modal-text"></h2>
-                    <button onclick="closeModal()">Close</button>
-                </div>
-            </div>
+    <div class="blurb">
+        <h3>Find your perfect vintage Coach bag! Browse our collection,
+            search for specific styles, and discover available bags to purchase.​</h3>
+    </div>
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <!-- Added id="modal-text" so JavaScript can find it -->
+            <h2 id="modal-text"></h2>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
 
     <!-- Automatically trigger the modal if Flask passed a message -->
