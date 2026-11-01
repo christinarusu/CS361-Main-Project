@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Christy's Vintage Store</title>
+</head>
+<link rel="stylesheet" href="../static/style.css">
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+  <!-- If the user is logged in --> 
+            {% if session.get('login_tracker') == '1' %} 
+                <li><a href="{{ url_for('account') }}">My Account</a> </li>
+                <li><a href="/logout">Log Out</a></li>
+            <!-- If the user is logged out --> 
+            {% else %} 
+               <li> <a href="{{ url_for('index') }}">Register/Login</a> </li>
+            {% endif %}
+        </ul>
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>

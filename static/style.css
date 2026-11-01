@@ -45,9 +45,9 @@ body {
 
 #cred-container {
     display: flex;
+    flex-direction: row;
     margin-top: 20px;
     align-items: center;
-    flex-direction: row;
 }
 
 #credentials{
@@ -55,15 +55,21 @@ body {
     flex-direction: column;
     gap: 5px;
     width: 100%;
+    max-width:fit-content;
     padding: 50px;
     margin: 10px;
     background-color: rgb(159, 186, 159);
     border-radius: 30px;
 }
 
-#credential-form{
-    align-items: flex-start;
-    flex-direction: row;
+
+.blurb{
+    margin-left: 40px;
+    color: rgb(95, 49, 29);
+    margin-left: 475px;
+    border-radius: 20px;
+    margin-top: -80px;
+    max-width: 350px;
 }
 
 .title{
@@ -79,12 +85,27 @@ input{
     margin-bottom: 10px;
 }
 
+#searchbutton{
+    background-color: lightpink;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
 button{
     margin-top: 20px;
     padding: 10px;
     border-radius: 15px;
     background-color: lightpink;
     cursor: pointer;
+}
+
+.buy-btn{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: lightpink;
+    cursor: pointer;
+    text-decoration: None;
 }
 
 #credbutton{
@@ -130,9 +151,45 @@ button{
     color: rgb(95, 49, 29);
 }
 
-.blurb{
-    color: rgb(95, 49, 29);
-    margin-left: 475px;
-    border-radius: 20px;
-    margin-top: -80px;
+
+/* The container that displays purses side-by-side */
+#purse-block {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;     
+  gap: 20px;           /* Space between the bags */
+  justify-content: left;
+  margin-top: 40px;
+}
+
+
+/* each purse item */
+.purse-item {
+  position: relative;
+  width: fit-content; /* This shrinks the container box to fit tightly around the image */
+  cursor: pointer;
+}
+
+
+/* makes sure all images are same size*/
+.purse-img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;  /* Crops image nicely to prevent squishing */
+  border-radius: 8px; /* Optional: smooth card corners */
+}
+
+/* price label on each image */
+.price-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 6px 12px;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 4px;
 }

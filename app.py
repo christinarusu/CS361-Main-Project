@@ -64,10 +64,69 @@ def index():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    if request.form.get('action') == 'Search':
-        if request.form.get("search"):
-            return render_template('home.html')
-    return render_template('home.html')
+    purses = {
+        "1": {
+            "name": "Coach Brown Leather Mia Bag",
+            "color": "brown, tan",
+            "serial": "M1382-1111A",
+            "price": "$150",
+            "img": "../static/img/1.jpg"
+        },
+        "2": {
+            "name": "Coach Purple Demi Stripe Bag",
+            "color": "purple, tan",
+            "serial": "M1382-28206E",
+            "price": "$125",
+            "img": "../static/img/2.jpg"
+        },
+        "3": {
+            "name": "Coach Red Leather Bleeker Bag",
+            "color": "red, burgundy",
+            "serial": "M1382-3333C",
+            "price": "$175",
+            "img": "../static/img/3.jpg"
+        },
+        "4": {
+            "name": "Coach Brown Ergo Kisslock Bag",
+            "color": "brown",
+            "serial": "M1382-4444D",
+            "price": "$195",
+            "img": "../static/img/4.jpg"
+        },
+        "5": {
+            "name": "Coach Black Signature Clasp Bag",
+            "color": "black",
+            "serial": "M1382-5555E",
+            "price": "$75",
+            "img": "../static/img/5.jpg"
+        },
+        "6": {
+            "name": "Coach Brown Signature Mia Bag",
+            "color": "brown",
+            "serial": "M1382-6666F",
+            "price": "$160",
+            "img": "../static/img/6.jpg"
+        },
+        "7": {
+            "name": "Coach Tan Belted Ergo Bag",
+            "color": "tan",
+            "serial": "M1382-7777G",
+            "price": "$180",
+            "img": "../static/img/7.jpg"
+        }
+    }
+    if request.form.get('action') == 'search':
+        search_purses = {}
+        if request.method == 'POST':
+            search_request = request.form.get("search").strip().lower()
+            for key, val in purses.items():
+                if search_request in val['name'].lower() or search_request in val['serial'].lower():
+                    search_purses[key] = val
+            if not search_purses:
+                return render_template('home.html', purses=purses)
+            else:
+                return render_template('home.html', purses=search_purses)
+    return render_template('home.html', purses=purses)
     
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
@@ -92,7 +151,6 @@ def account():
         session.clear()
         return redirect(url_for("index"))
 
-  # 2. Check if pickle returned a structured dictionary or an old password string
     user_info = {
         "name": matched_user.get("name"),
         "email": matched_user.get("email"),
@@ -100,6 +158,10 @@ def account():
         }
 
     return render_template("account.html", user=user_info)
+
+@app.route('/buy', methods=['GET', 'POST'])
+def buy():
+    return render_template("buy.html")
 
     
 if __name__ == "__main__":

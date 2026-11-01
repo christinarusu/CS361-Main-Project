@@ -13,7 +13,7 @@
             <li><a href="{{ url_for('help') }}">Help</a></li>
   <!-- If the user is logged in --> 
             {% if session.get('login_tracker') == '1' %} 
-                <li><a href="{{ url_for('home') }}">My Account</a> </li>
+                <li><a href="{{ url_for('account') }}">My Account</a> </li>
                 <li><a href="/logout">Log Out</a></li>
             <!-- If the user is logged out --> 
             {% else %} 
@@ -21,14 +21,47 @@
             {% endif %}
         </ul>
     </div>
-    <div id="purse-block">
-                <div class="purse-item">
-                    <img src="../static/img/1.jpg" alt="..." width="200" height="200">
-                </div>
-    </div>    
-     <form id="Search-form" method="POST" action="/">
-                <label for="search"> Search</label><br>
-                <input type="search" id="search" name="search"><br>
+     <form id="search" method="POST" action="/home">
+            <label for="search"> Search</label><br>
+            <input type="text" id="search" name="search">
+            <button id="searchbutton" name= 'action' value= 'search' type="submit">Go</button>
     </form>      
+    <div id="purse-block">
+        {% for id, details in purses.items() %}
+        <div class="purse-item" onclick="purseModal({
+            img: '{{ details.img }}',
+            name: '{{ details.name }}',
+            color: '{{ details.color }}',
+            serial: '{{ details.serial }}', 
+            price: '{{ details.price }}'})">
+            <img class="purse-img" src="{{ details.img }}" alt="{{ id }}" width="200" height="200">
+            <span class="price-badge">{{ details.price }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <button onclick="closePurseModal()">Close</button>
+            <!-- Left Side: Image -->
+        <div class="modal-left">
+            <img id="modal-img" src="" alt="Purse View" width="200" height="200">
+        </div>
+        
+        <!-- Right Side: Text & Purchase Details -->
+        <div class="modal-right">
+            <p><strong>Name:</strong> <span id="modal-name"></span></p>
+            <p><strong>Color:</strong> <span id="modal-color"></span></p>
+            <p><strong>Serial Number:</strong> <span id="modal-serial"></span></p>
+            <p><strong>Price:</strong> <span id="modal-price"></span></p>
+            
+            {% if session.get('login_tracker') == '1' %} 
+                <a href="{{ url_for('buy') }}" class="buy-btn">Buy</a>
+            {% else %} 
+                <div></div>
+            {% endif %}
+        </div>
+        </div>
+    </div>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
