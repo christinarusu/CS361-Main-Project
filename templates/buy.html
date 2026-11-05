@@ -35,13 +35,13 @@
                 <p><strong>Serial Number:</strong> {{ bag.serial }}</p>
                 <p class="checkout-price"><strong>Price:</strong> {{ bag.price }}</p>
                 <form action="{{ url_for('buy', bag_id=request.view_args['bag_id']) }}" method="POST">
-                    <button id=orderbtn type="submit" class="confirm-btn">Place Order</button>
+                    <button id=orderbtn type="button" class="confirm-btn">Place Order</button>
                     <div id="success-modal" class="modal">
                     <div class="modal-content">
                         <h2 id="modal-text"></h2>
                         <button onclick="closeModal()">Close</button>
                         <!--Will need to come back and make purchase button functional-->
-                        <button onclick="closeModal()">Purchase</button>
+                        <button type="submit" name="action" value="purchase">Purchase</button>
                     </div>
                 </div>
                 <script src="{{ url_for('static', filename='index.js') }}"></script>

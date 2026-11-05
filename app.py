@@ -34,7 +34,8 @@ def index():
                         "password": password,
                         "name": name,  # Default username from email
                         "email": email,
-                        "address": address}
+                        "address": address,
+                        "bags": []}
                     message = "You are now registered!"
                     with open("user_credentials.json", "wb") as user_credentials:
                         pickle.dump(user_dict, user_credentials)
@@ -154,7 +155,11 @@ def account():
     if "log_email" not in session:
         return render_template("index.html")
     
+    with open("user_credentials.json", "rb") as user_credentials:
+        user_dict = pickle.load(user_credentials)
+
     email = session.get("log_email")
+
     #pulls user info from credential directory based on session email
     matched_user = user_dict.get(email) 
     if not matched_user:
@@ -166,6 +171,7 @@ def account():
         "name": matched_user.get("name"),
         "email": matched_user.get("email"),
         "address": matched_user.get("address"),
+        "bags": matched_user.get("bags")
         }
 
     return render_template("account.html", user=user_info)
@@ -177,7 +183,19 @@ def buy(bag_id):
         selected_purse = purses.get(bag_id) # purse that user clicked on
         message = "Are you sure you want to purchase this bag? " \
         "Once purchased, your account will be charged the total amount"
-        return render_template("buy.html", bag=selected_purse, message=message)
+    if request.method== "POST" and request.form.get('action') == 'purchase':
+            with open("user_credentials.json", "rb") as user_credentials:
+                    user_dict = pickle.load(user_credentials)
+            email = session.get("log_email")
+            user_purses = user_dict[email]["bags"]
+            user_purses.append(selected_purse)
+            purses.pop(bag_id)
+            with open("user_credentials.json", "wb") as user_credentials:
+                pickle.dump(user_dict, user_credentials)
+            with open("purses.json", "wb") as purse_file:
+                pickle.dump(purses, purse_file)
+            return redirect(url_for("account"))
+    return render_template("buy.html", bag=selected_purse, message=message)
     
 if __name__ == "__main__":
     app.run(debug=True)
