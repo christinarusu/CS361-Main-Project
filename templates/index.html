@@ -23,6 +23,7 @@
     </div>
     <div id="cred-container">
         <div id="credentials">
+            <!--Handles user registration-->
             <h2>New User? Register Here:</h2>
             <form id="credential-form" method="POST" action="/">
                 <label for="name">Name:</label><br>
@@ -43,6 +44,7 @@
             </form>
         </div>
         <div id="credentials">
+            <!--Handles user login-->
             <h2>Returning User? Login Here:</h2>
             <form id="credential-form" method="POST" action="/">
 
@@ -59,9 +61,9 @@
         <h3><i>Find your perfect vintage Coach bag! Browse our collection,
             search for specific styles, and discover available bags to purchase!</i>​</h3>
         </div>
+        <!--Displays message in modal of result from user input-->
     <div id="success-modal" class="modal">
         <div class="modal-content">
-            <!-- Added id="modal-text" so JavaScript can find it -->
             <h2 id="modal-text"></h2>
             <button onclick="closeModal()">Close</button>
         </div>

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    /* Add a background color or image */
+    /* Adds a background color to page*/
     background-color: blanchedalmond;; 
 
     /* Customize the default size, color, and font for text*/
@@ -99,24 +99,13 @@ button{
     cursor: pointer;
 }
 
-.buy-btn{
+.buybtn{
     margin-top: 20px;
     padding: 10px;
     border-radius: 15px;
     background-color: lightpink;
     cursor: pointer;
     text-decoration: None;
-}
-
-#credbutton{
-    padding: 10px 15px;          /* space between button's text and edge */
-    border-radius: 5px;         /* curved edges instead of square */
-    cursor: pointer;            /* makes the cursor change when over button */
-    border-width: 2px;
-    border-color: rgb(158, 98, 52);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bold;
-    font-size: 15px;
 }
 
 .navbar ul {
@@ -152,7 +141,7 @@ button{
 }
 
 
-/* The container that displays purses side-by-side */
+/* The container that displays purses side-by-side on home page*/
 #purse-block {
   display: flex;
   flex-direction: row; 
@@ -176,8 +165,8 @@ button{
   display: block;
   width: 200px;
   height: 200px;
-  object-fit: cover;  /* Crops image nicely to prevent squishing */
-  border-radius: 8px; /* Optional: smooth card corners */
+  object-fit: cover;  /* Crops image to prevent squishing */
+  border-radius: 8px; /* rounded image corners */
 }
 
 /* price label on each image */
@@ -192,4 +181,8 @@ button{
   font-size: 0.9rem;
   font-weight: bold;
   border-radius: 4px;
+}
+
+.checkout-container{
+    margin-top: 100px;
 }

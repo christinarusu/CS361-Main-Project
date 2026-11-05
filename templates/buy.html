@@ -1,4 +1,4 @@
-<!-- Christina-->
+<!-- Christina Rusu -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('help') }}">Help</a></li>
-  <!-- If the user is logged in --> 
+            <!-- If the user is logged in --> 
             {% if session.get('login_tracker') == '1' %} 
                 <li><a href="{{ url_for('account') }}">My Account</a> </li>
                 <li><a href="/logout">Log Out</a></li>
@@ -22,5 +22,42 @@
             {% endif %}
         </ul>
     </div>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <div class="checkout-container">
+        <h1>Confirm Your Purchase</h1>
+        <div>
+            <!-- loads the bag image and information onto page -->
+            <div>
+                <img class="checkout-img" src="{{ bag.img }}" alt="{{ bag.name }}" width="300" height="300">
+            </div>
+            <div>
+                <h2>{{ bag.name }}</h2>
+                <p><strong>Color:</strong> {{ bag.color }}</p>
+                <p><strong>Serial Number:</strong> {{ bag.serial }}</p>
+                <p class="checkout-price"><strong>Price:</strong> {{ bag.price }}</p>
+                <form action="{{ url_for('buy', bag_id=request.view_args['bag_id']) }}" method="POST">
+                    <button id=orderbtn type="submit" class="confirm-btn">Place Order</button>
+                    <div id="success-modal" class="modal">
+                    <div class="modal-content">
+                        <h2 id="modal-text"></h2>
+                        <button onclick="closeModal()">Close</button>
+                        <!--Will need to come back and make purchase button functional-->
+                        <button onclick="closeModal()">Purchase</button>
+                    </div>
+                </div>
+                <script src="{{ url_for('static', filename='index.js') }}"></script>
+
+                <!-- trigger the modal with message from app.py if order button is pressed -->
+                {% if message %}
+                <script>
+                    orderbtn.onclick = function() {
+                        event.preventDefault()
+                        buyModal("{{ message }}");
+                    };
+                </script>
+                {% endif %}
+                    <a href="{{ url_for('home') }}" class="cancel-link">Cancel and Go Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>

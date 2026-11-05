@@ -11,7 +11,7 @@
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="{{ url_for('help') }}">Help</a></li>
-  <!-- If the user is logged in --> 
+            <!-- If the user is logged in --> 
             {% if session.get('login_tracker') == '1' %} 
                 <li><a href="{{ url_for('account') }}">My Account</a> </li>
                 <li><a href="/logout">Log Out</a></li>
@@ -25,10 +25,11 @@
             <label for="search"> Search</label><br>
             <input type="text" id="search" name="search">
             <button id="searchbutton" name= 'action' value= 'search' type="submit">Go</button>
-    </form>      
+    </form>    
+    <!--Displays purse photos and details when clicked-->  
     <div id="purse-block">
         {% for id, details in purses.items() %}
-        <div class="purse-item" onclick="purseModal({
+          <div class="purse-item" onclick="purseModal('{{ id }}', {
             img: '{{ details.img }}',
             name: '{{ details.name }}',
             color: '{{ details.color }}',
@@ -43,20 +44,21 @@
     <div id="info-modal" class="modal">
         <div class="modal-content">
             <button onclick="closePurseModal()">Close</button>
-            <!-- Left Side: Image -->
+            <!--Image -->
         <div class="modal-left">
             <img id="modal-img" src="" alt="Purse View" width="200" height="200">
         </div>
         
-        <!-- Right Side: Text & Purchase Details -->
+        <!--Text & Purchase Details -->
         <div class="modal-right">
             <p><strong>Name:</strong> <span id="modal-name"></span></p>
             <p><strong>Color:</strong> <span id="modal-color"></span></p>
             <p><strong>Serial Number:</strong> <span id="modal-serial"></span></p>
             <p><strong>Price:</strong> <span id="modal-price"></span></p>
             
+            <!--Shows user the buy button if they are logged in-->
             {% if session.get('login_tracker') == '1' %} 
-                <a href="{{ url_for('buy') }}" class="buy-btn">Buy</a>
+                <a href="#" id="buybtn" class="buybtn">Buy</a>
             {% else %} 
                 <div></div>
             {% endif %}
